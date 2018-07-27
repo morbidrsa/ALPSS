@@ -17,6 +17,10 @@ cat ${src} | while read -a array; do
 	email="${array[0]}"
 	name="${array[1]}"
 
+	if [ $name == "Name" -o $email == "email" ]; then
+		continue;
+	fi
+
 	tmpfile=$(mktemp)
 	sed -s "s/\$INVITEE/$name/" invitation.txt > $tmpfile
 
